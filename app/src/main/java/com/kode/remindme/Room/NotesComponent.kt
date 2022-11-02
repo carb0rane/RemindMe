@@ -1,7 +1,7 @@
 package com.kode.remindme.Room
 
 import android.app.Application
-import com.kode.remindme.AddNoteActivity
+import com.kode.remindme.UI.AddNoteActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,13 +11,7 @@ interface NotesComponent {
 
      fun inject(noteActivity: AddNoteActivity)
 
-     fun getDatabase():NotesDatabase
-
-     fun getDao():NoteDAO
-
-     fun getNotesRepo():NotesRepo
 
      fun application():Application
-
 
 }
