@@ -11,9 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationServices
+import com.kode.remindme.Notification.DaggerNotificationComponent
 import com.kode.remindme.Room.*
 import com.kode.remindme.databinding.ActivityMainBinding
-import com.kode.remindme.map.DaggerNotificationComponent
 import com.kode.remindme.map.Data
 import com.kode.remindme.map.ForegroundService
 import com.kode.remindme.map.GeofenceBroadcastReceiver

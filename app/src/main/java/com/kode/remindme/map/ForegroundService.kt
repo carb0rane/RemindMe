@@ -17,6 +17,7 @@ import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
+import com.kode.remindme.Notification.DaggerNotificationComponent
 import com.kode.remindme.Notification.NotificationModule
 import com.kode.remindme.Room.AppModule
 import com.kode.remindme.Room.NotesRepo
@@ -95,7 +96,10 @@ class ForegroundService : LifecycleService() {
                         Log.d(TAG, "sendReminderNotification: $details")
                         reminder_notificationBuilder.setOngoing(false)
                         reminder_notificationBuilder.setContentText(
-                            details.heading + "is <=> "
+                            details.mainContent + " "
+                        )
+                        reminder_notificationBuilder.setContentTitle(
+                            details.heading
                         )
                         reminder_notificationManager.notify(
                             Data.REM_NOTIFICATION_ID,
@@ -147,14 +151,15 @@ val audioAttributes = AudioAttributes.Builder().setContentType(AudioAttributes.C
             createNotificationChannel()
         }
         startForeground(Data.NOTIFICATION_ID, notificationBuilder.build())
-        CoroutineScope(Dispatchers.Main).launch {
-            liveLocation.observe(this@ForegroundService) {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            liveLocation.observe(this@ForegroundService) {
                 notificationBuilder.setContentText(
-                    "Now i : $it"
+                    "Live location is being tracked to remind of saved notes"
                 )
+        notificationBuilder.setContentTitle("Background Tracking is On")
                 notificationManager.notify(Data.NOTIFICATION_ID, notificationBuilder.build())
-            }
-        }
+//            }
+//        }
 
     }
 
@@ -179,7 +184,6 @@ val audioAttributes = AudioAttributes.Builder().setContentType(AudioAttributes.C
             Data.PERM_NOTIFICATION_CHANNEL_NAME,
             IMPORTANCE_DEFAULT
         )
-
             channel.lockscreenVisibility =Notification.VISIBILITY_PUBLIC
         notificationManager.createNotificationChannel(channel)
     }

@@ -58,8 +58,6 @@ class NotificationModule {
             .setAutoCancel(false)
             .setOngoing(false)
             .setSmallIcon(R.drawable.ic_baseline_gps_fixed_24)
-            .setContentText("Keep Studying Buddy")
-            .setContentTitle("This is title")
             .setColorized(true)
             .setColor(Color.argb(255,0,0,255))
             .setContentIntent(intent)
